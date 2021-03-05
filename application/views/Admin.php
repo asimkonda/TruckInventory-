@@ -213,7 +213,9 @@
       </div>
       <div class="modal-body">
       <!--   <form  method="post"> -->
-            <?php echo form_open('Welcome/addnewuser'); ?>
+            <?php
+                $attributes = array( 'id' => 'adduserform','name'=>'adduserform');
+             echo form_open('Welcome/addnewuser',$attributes); ?>
             <div class="form-group">
             <label for="first name">First Name</label>
             <?php echo form_input(['name'=>'fname','class'=>'form-control','id'=>'fname']); ?>
@@ -260,6 +262,12 @@
            <!--<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password">-->
            <div></div>
            </div>
+           <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <?php echo form_input(['name'=>'cpwd','class'=>'form-control','id'=>'cpwd','type'=>'password']); ?>
+           <!--<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password">-->
+           <div></div>
+           </div>
             <!--</form>-->
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -276,7 +284,85 @@
     </div>
   </div>
 </div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#adduserform').bootstrapValidator({
+feedbackIcons: {
+    valid: 'glyphicon glyphicon-ok',
+    invalid: 'glyphicon glyphicon-remove',
+    validating: 'glyphicon glyphicon-refresh'
+},
+fields: {
+    fname: {
+        validators: {
+            stringLength: {
+                min: 3,
+                message: 'Please Enter your Full name with minimum 4 letters length'
+            },
+            notEmpty: {
+                message: 'Please Enter your Full name'
+            }
+        }
+    },
+    lname: {
+        validators: {
+            stringLength: {
+                min: 3,
+                message: 'Please Enter your Last name with minimum 4 letters length'
+            },
+            notEmpty: {
+                message: 'Please Enter your Full name'
+            }
+        }
+    },
+    
+    Location: {
+        validators: {
+            notEmpty: {
+                message: 'The Location option is required'
+            }
+        }
+    },
+    Uname: {
+        validators: {
+            notEmpty: {
+                message: 'The Username option is required'
+            }
+        }
+    },
+    pwd: {
+        validators: {
+            notEmpty: {
+                message: 'Enter your profile password'
+            }
+        }
+    },
+    cpwd: {
+        validators: {
+            notEmpty: {
+                message: 'Enter confirm your profile password'
+            },
+            identical: {
+                field: 'password',
+                message: 'Enter the password, what enter in password field'
+            }
+        }
+     },
+        
+    }
+});
 
+
+$('#btn').click(function() {
+        $("#adduserform").valid();
+    });
+
+
+});
+</script>
         
 			
 <?php include_once("footer.php");?>
