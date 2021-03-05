@@ -49,59 +49,27 @@ class Welcome extends CI_Controller {
 
 	public function addnewuser(){
 
-/*   $this->form_validation->set_rules('name', 'name', 'required');
-                $this->form_validation->set_rules('fname', 'fname', 'required');
-                $this->form_validation->set_rules('lname', 'lname', 'required');
-                $this->form_validation->set_rules('location', 'location', 'required');
-                $this->form_validation->set_rules('pwd', 'pwd', 'required',
-                        array('required' => 'You must provide a %s.')
-                );
-                
-                if ($this->form_validation->run() == FALSE)
-                {
-                        //echo validation_erros();
-                }
-                else
-                {
-                     $data['post']== $this->input->post();
-
-                      echo "<pre>";
-                      print_r($post);
-
-                      echo "</pre>";
-                      exit();
-                } */
 
                 
                  $data = $this->input->post();
-                 unset($data['save']);//dont need the value of save
+                 unset($data['save']);
+
+                 $data = array(
+                 	'user_fname' =>$this->input->post('fname') ,
+                 	'user_lname' =>$this->input->post('lname') ,
+                 	'user_location' =>$this->input->post('location') ,
+                 	'user_uname' =>$this->input->post('uname') ,
+                 	'user_pwd' =>$this->input->post('pwd') ,
+
+                 	 );
+                 
+                 //dont need the value of save
                  $this->load->model('Adminmodel');
                  $this->Adminmodel->addnewuser($data);
 	}
 
-	/*public function index()
-	{
-		$this->load->view('allusers');
-	}*/
-
-    /*public function adduser()
-	{
-		 
-		if($this->input->post('save'))
-		{
-		    $data['first_name']=$this->input->post('fname');
-			$data['last_name']=$this->input->post('lname');
-			$data['email']=$this->input->post('location');
-			$data['email']=$this->input->post('pwd');
-			$user=$this->Adminmodel>saverecords($data);
-			if($user>0){
-			        echo "Records Saved Successfully";
-			}
-			else{
-					echo "Insert error !";
-			}
-		}
-	}   */
+	
+	
 	
 
 

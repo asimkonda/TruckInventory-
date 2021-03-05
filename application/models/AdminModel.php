@@ -15,14 +15,7 @@ class Adminmodel extends CI_Model
 	}
 	public function addnewuser($data){
 
-		//$query = "INSERT INTO tbl_user (user_fname, user_lname, user_location, user_pwd,user_uname) VALUES ("$data['fname']", "$data['lname']", "$data['location']", "$data['fname']", "$data['pwd']", "$data['uname']")";
-					echo "<pre>";
-                     print_r($data['fname'] );
-
-                   echo "</pre>";	
-                     exit();
-
-		$this->db->query($query );
+		$this->db->insert('tbl_user',$data );
 
 
 
