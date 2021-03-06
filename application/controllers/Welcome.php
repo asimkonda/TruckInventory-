@@ -49,8 +49,6 @@ class Welcome extends CI_Controller {
 
 	public function addnewuser(){
 
-
-                
                  $data = $this->input->post();
                  unset($data['save']);
 

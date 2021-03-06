@@ -15,7 +15,7 @@ class Adminmodel extends CI_Model
 	}
 	public function addnewuser($data){
 
-		$this->db->insert('tbl_user',$data );
+		//$this->db->insert('tbl_user',$data );
 
 
 
